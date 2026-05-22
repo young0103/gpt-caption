@@ -182,6 +182,18 @@
   background: rgba(230, 70, 70, 0.9);
 }
 
+.ycs-button-row button.ycs-save {
+  background: rgba(40, 160, 90, 0.78);
+}
+
+.ycs-button-row button.ycs-save:hover {
+  background: rgba(50, 190, 110, 0.92);
+}
+
+.ycs-half-action {
+  grid-template-columns: 1fr 1fr;
+}
+
 .ycs-split-action {
   display: grid;
   grid-template-columns: 3fr 1fr;

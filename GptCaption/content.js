@@ -145,9 +145,15 @@
 
           <button type="button" data-ycs-action="load-translation-json">Load Transcription</button>
           <button type="button" data-ycs-action="toggle-subtitles">Show/Hide Subtitles</button>
-          <button type="button" class="ycs-danger" data-ycs-action="clear-cache">Clear Cached Translation</button>
+          <div class="ycs-split-action ycs-half-action">
+            <button type="button" class="ycs-danger" data-ycs-action="clear-cache">
+              Clear
+            </button>
+            <button type="button" class="ycs-save" data-ycs-action="save-translation-json">
+              Save
+            </button>
+          </div>
         </div>
-
         <div class="ycs-control-group">
           <label class="ycs-range-label">
             <span>Subtitle Size</span>
@@ -256,7 +262,11 @@
         case 'clear-cache':
           handleClearCache();
           break;
-
+        
+        case 'save-translation-json':
+          handleSaveTranslationJson();
+          break;
+        
         case 'close-panel':
           document.getElementById(APP_ID)?.classList.remove('ycs-panel-open');
           break;
@@ -1236,6 +1246,51 @@
 
     setStatus('Cached translation cleared for this video. Transcript cache was kept.');
   }
+
+function handleSaveTranslationJson() {
+  assertVideoPage();
+
+  const cues = state.translatedCues || loadJson(storageKey('translation'));
+
+  if (!Array.isArray(cues) || !cues.length) {
+    alert('No translated subtitles are currently loaded.');
+    return;
+  }
+
+  const videoId = getVideoId() || 'unknown-video';
+  const safeTitle = sanitizeFilename(getVideoTitle() || videoId);
+  const filename = `${safeTitle}_${videoId}_translation.json`;
+
+  const jsonText = JSON.stringify(cues, null, 2);
+  const blob = new Blob([jsonText], {
+    type: 'application/json;charset=utf-8'
+  });
+
+  const url = URL.createObjectURL(blob);
+
+  const anchor = document.createElement('a');
+  anchor.href = url;
+  anchor.download = filename;
+  anchor.style.display = 'none';
+
+  document.documentElement.appendChild(anchor);
+  anchor.click();
+  anchor.remove();
+
+  window.setTimeout(() => {
+    URL.revokeObjectURL(url);
+  }, 1000);
+
+  setStatus(`Translation JSON saved: ${filename}`);
+}
+
+function sanitizeFilename(name) {
+  return String(name || '')
+    .replace(/[\\/:*?"<>|]/g, '_')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, 120) || 'youtube_translation';
+}
 
   function getSubtitleSettings() {
     try {
