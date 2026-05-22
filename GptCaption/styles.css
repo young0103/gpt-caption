@@ -1,0 +1,431 @@
+#movie_player,
+.html5-video-player {
+  position: relative !important;
+}
+
+#ycs-panel.ycs-hidden-on-page,
+#ycs-launcher.ycs-hidden-on-page,
+#ycs-toolbar-root.ycs-hidden-on-page {
+  display: none !important;
+}
+
+/* GC button root inside YouTube right controls */
+#ycs-toolbar-root {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 48px !important;
+  width: 48px !important;
+  min-width: 48px !important;
+  max-width: 48px !important;
+  vertical-align: top !important;
+  pointer-events: auto !important;
+}
+
+#ycs-launcher {
+  border: none !important;
+  background: transparent !important;
+  color: white !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-family: Arial, sans-serif !important;
+}
+
+#ycs-launcher.ycs-in-player-controls {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 48px !important;
+  max-width: 48px !important;
+
+  opacity: 0.95 !important;
+  vertical-align: top !important;
+  z-index: 999999 !important;
+  overflow: visible !important;
+
+  font-size: 0 !important;
+  line-height: 0 !important;
+}
+
+#ycs-launcher.ycs-in-player-controls::after {
+  content: "GC";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 30px;
+  height: 24px;
+
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.5px;
+  text-align: center;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.9);
+
+  pointer-events: none;
+}
+
+#ycs-launcher.ycs-in-player-controls:hover {
+  opacity: 1 !important;
+}
+
+#ycs-launcher.ycs-in-player-controls:hover::after {
+  text-shadow:
+    0 0 4px rgba(0, 0, 0, 0.9),
+    0 0 8px rgba(255, 255, 255, 0.75);
+}
+
+/* Main panel */
+#ycs-panel {
+  position: absolute;
+  right: 14px;
+  bottom: 62px;
+  z-index: 999999;
+  width: 320px;
+  max-width: calc(100% - 28px);
+  display: none;
+  box-sizing: border-box;
+  background: rgba(18, 18, 18, 0.94);
+  color: #ffffff;
+  border-radius: 12px;
+  padding: 12px;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(10px);
+}
+
+#ycs-panel.ycs-panel-open {
+  display: block;
+}
+
+.ycs-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.ycs-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.25;
+}
+
+.ycs-close {
+  flex: 0 0 auto;
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  padding: 0;
+}
+
+.ycs-close:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.ycs-video {
+  margin: 6px 0 10px;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 12px;
+  line-height: 1.35;
+  max-height: 42px;
+  overflow: hidden;
+}
+
+.ycs-button-row {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.ycs-button-row button {
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.ycs-button-row button:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.ycs-button-row button.ycs-danger {
+  background: rgba(210, 60, 60, 0.75);
+}
+
+.ycs-button-row button.ycs-danger:hover {
+  background: rgba(230, 70, 70, 0.9);
+}
+
+.ycs-split-action {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 7px;
+}
+
+.ycs-split-action button {
+  width: 100%;
+}
+
+.ycs-plus-action {
+  font-size: 18px !important;
+  font-weight: 900 !important;
+  padding: 8px 0 !important;
+}
+
+/* Slider controls */
+.ycs-control-group {
+  margin-top: 10px;
+  padding: 9px;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.ycs-range-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 6px 0 4px;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.ycs-control-group input[type="range"] {
+  width: 100%;
+  accent-color: #ffffff;
+  cursor: pointer;
+}
+
+/* Subtitle overlay */
+#ycs-subtitle-overlay {
+  position: absolute;
+  left: 50%;
+  bottom: 12%;
+  transform: translateX(-50%);
+  z-index: 999998;
+  width: max-content;
+  max-width: 92%;
+  box-sizing: border-box;
+  text-align: center;
+  pointer-events: auto;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+#ycs-subtitle-overlay.ycs-subtitle-hidden {
+  display: none !important;
+}
+
+#ycs-subtitle-overlay.ycs-subtitle-dragging {
+  cursor: grabbing;
+}
+
+#ycs-subtitle-overlay .ycs-subtitle-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.02em;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 0.32em 0.72em;
+  background: rgba(0, 0, 0, var(--ycs-subtitle-bg-opacity, 0.76));
+  color: #ffffff;
+  font-weight: 800;
+  line-height: 1.25;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
+  white-space: pre-wrap;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  pointer-events: none;
+  border-radius: 1px;
+}
+
+.ycs-subtitle-line {
+  display: block;
+  padding: 0.02em 0;
+  background: transparent;
+  border-radius: 0;
+}
+
+.html5-video-player.ytp-fullscreen #ycs-subtitle-overlay {
+  z-index: 2147483646;
+}
+
+.html5-video-player.ytp-fullscreen #ycs-launcher,
+.html5-video-player.ytp-fullscreen #ycs-panel {
+  z-index: 2147483647;
+}
+
+/* Modals */
+#ycs-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+#ycs-modal {
+  width: min(780px, 96vw);
+  max-height: 86vh;
+  box-sizing: border-box;
+  background: #181818;
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 16px 60px rgba(0, 0, 0, 0.55);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#ycs-modal h2 {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.3;
+}
+
+#ycs-modal p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+#ycs-modal code {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 5px;
+  padding: 1px 5px;
+  color: #ffffff;
+}
+
+#ycs-modal textarea {
+  width: 100%;
+  min-height: 360px;
+  max-height: 58vh;
+  resize: vertical;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  padding: 12px;
+  background: #101010;
+  color: #ffffff;
+  font-size: 13px;
+  line-height: 1.45;
+  font-family: Consolas, Monaco, monospace;
+  outline: none;
+}
+
+#ycs-modal textarea:focus {
+  border-color: rgba(100, 160, 255, 0.85);
+  box-shadow: 0 0 0 3px rgba(100, 160, 255, 0.18);
+}
+
+
+.ycs-modal-label {
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 12px;
+  font-weight: 800;
+  margin-top: 4px;
+}
+
+.ycs-small-textarea {
+  min-height: 150px !important;
+}
+
+
+.ycs-checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.ycs-checkbox-row input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  accent-color: #ffffff;
+}
+
+.ycs-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.ycs-modal-actions button {
+  border: none;
+  border-radius: 9px;
+  padding: 9px 13px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.ycs-modal-actions button:hover {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.ycs-modal-actions button[data-ycs-modal="save"] {
+  background: rgba(70, 130, 255, 0.85);
+}
+
+.ycs-modal-actions button[data-ycs-modal="save"]:hover {
+  background: rgba(90, 150, 255, 0.95);
+}
+
+@media (max-width: 720px) {
+  #ycs-panel {
+    right: 10px;
+    bottom: 58px;
+    width: min(300px, calc(100% - 20px));
+    padding: 10px;
+  }
+
+  .ycs-button-row button {
+    padding: 7px 9px;
+    font-size: 12px;
+  }
+
+  #ycs-subtitle-overlay {
+    max-width: 94%;
+  }
+}
