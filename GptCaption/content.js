@@ -889,14 +889,18 @@
   1. First infer what the whole video is about from the full transcript.
   2. Build an internal consistent terminology glossary before translating. Do not output the glossary.
   3. Translate with full-context awareness. Use the entire transcript context to keep terminology, tone, and references consistent.
-  4. Translate meaning, not word-by-word. Make the Korean natural for subtitles.
-  5. Do not arbitrarily omit, shorten, oversimplify, or summarize the original content.
-  6. Preserve the speaker's intended meaning as much as possible, including explanations, logical flow, nuance, and technical details.
-  7. If the source transcript is auto-generated and awkward, infer the most likely intended meaning from context before translating.
-  8. If user-provided instructions or attached files are given, use them to improve terminology and consistency.
-  9. Preserve the timing information.
-  10. Keep one output cue per input cue unless a cue is empty or unusable.
-  11. Return ONLY valid JSON. No Markdown, no code fence, no explanation.${manualAttachmentBlock}${extraInstructionsBlock}
+  4. Prioritize subtitle timing alignment over fully polished Korean sentence order.
+  5. Use surrounding cues only to understand context, terminology, and references. Do not move information from later cues into earlier cues.
+  6. Each output cue must translate only the meaning that appears in the corresponding input cue.
+  7. If the source cue is a sentence fragment, the Korean translation may also be a natural Korean fragment.
+  8. Keep the translation relatively direct and time-aligned. Avoid restructuring a sentence across multiple cues in a way that makes the subtitle appear too early or too late.
+  9. Do not arbitrarily omit, shorten, oversimplify, or summarize the original content.
+  10. Preserve the speaker's intended meaning as much as possible, including explanations, logical flow, nuance, and technical details.
+  11. If the source transcript is auto-generated and awkward, infer the most likely intended meaning from context before translating, but keep each cue aligned to its original time block.
+  12. If user-provided instructions or attached files are given, use them to improve terminology and consistency.
+  13. Preserve the timing information.
+  14. Keep one output cue per input cue unless a cue is empty or unusable.
+  15. Return ONLY valid JSON. No Markdown, no code fence, no explanation.${manualAttachmentBlock}${extraInstructionsBlock}
 
   Required JSON schema:
   [
